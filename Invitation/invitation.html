@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Modern Invitation</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* Background image with blur */
+    background: url('background.jpg') no-repeat center center/cover;
+    overflow: hidden;
+  }
+
+  .blur-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    background: rgba(0,0,0,0.3);
+    z-index: 0;
+  }
+
+  /* Card container */
+  .card {
+    position: relative;
+    width: 700px;
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex; /* Split layout */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 1;
+  }
+
+  /* Left side – slideshow */
+  .slides {
+    width: 50%;
+    height: 100%;
+    position: relative;
+  }
+
+  .slides img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: slideShow 12s infinite;
+  }
+
+  .slides img:nth-child(1) { animation-delay: 0s; }
+  .slides img:nth-child(2) { animation-delay: 4s; }
+  .slides img:nth-child(3) { animation-delay: 8s; }
+
+  @keyframes slideShow {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    30% { opacity: 1; }
+    40% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  /* Right side – text overlay */
+  .overlay {
+    width: 50%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(to left, rgba(0,0,0,0.7), transparent);
+    color: white;
+  }
+
+  .overlay h1 {
+    font-size: 32px;
+    margin: 0 0 10px 0;
+  }
+
+  .overlay h2 {
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    color: #ffdd7a;
+  }
+
+  .details {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ff7a18;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    width: fit-content;
+  }
+  .card {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(255,215,0,0.3);
+  border-radius: 25px;
+
+  .slides img {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+
+  
+}
+</style>
+</head>
+<body>
+
+<div class="blur-overlay"></div>
+
+<div class="card">
+  <!-- Left: slideshow images -->
+  <div class="slides">
+    <img src="img1.jpg">
+    <img src="img2.jpg">
+    <img src="img3.jpg">
+  </div>
+
+  <!-- Right: text overlay -->
+  <div class="overlay">
+    <h1>🎉 You're Invited!</h1>
+    <h2>Celebrate With Us</h2>
+    <div class="details">
+      📅 June 10, 2026 <br>
+      ⏰ 4:00 PM <br>
+      📍 Nowhere <br><br>
+    </div>
+  
+  </div>
+</div>
+
+<!-- Autoplay music -->
+<audio id="bg-music" autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  // Autoplay fallback for browsers
+  window.addEventListener("load", () => {
+    const audio = document.getElementById("bg-music");
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        document.body.addEventListener("click", () => {
+          audio.play();
+        }, { once: true });
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
