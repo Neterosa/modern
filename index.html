@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>You're Invited</title>
+<title>Jorge Grad</title>
 <style>
   body {
     margin: 0;
@@ -150,6 +150,13 @@
 function playMusic() {
   const audio = document.getElementById("bgMusic");
   audio.play().catch(err => console.log(err));
+}
+</script>
+  <script>
+function playMusic() {
+  const audio = document.getElementById("bgMusic");
+  audio.volume = 1;
+  audio.play();
 }
 </script>
 
